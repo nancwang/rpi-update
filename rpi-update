@@ -3,10 +3,10 @@
 set -o nounset
 set -o errexit
 
-REPO_URI=${REPO_URI:-"https://github.com/Hexxeh/rpi-firmware"}
+REPO_URI=${REPO_URI:-"https://github.com/nancwang/rpi-firmware"}
 
 UPDATE_SELF=${UPDATE_SELF:-1}
-UPDATE_URI="https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update"
+UPDATE_URI="https://raw.githubusercontent.com/nancwang/rpi-update/master/rpi-update"
 
 if [[ ${BOOT_PATH:-"unset"} == "unset" && ${ROOT_PATH:-"unset"} != "unset" ]] ||
 [[ ${BOOT_PATH:-"unset"} != "unset" && ${ROOT_PATH:-"unset"} == "unset" ]]; then
@@ -149,7 +149,7 @@ function update_sdk {
 }
 
 function show_notice {
-	local FULL_NOTICE=`eval curl -Lfs ${GITHUB_AUTH_PARAM} https://raw.githubusercontent.com/hexxeh/rpi-firmware/${FW_REV}/NOTICE.md`
+	local FULL_NOTICE=`eval curl -Lfs ${GITHUB_AUTH_PARAM} https://raw.githubusercontent.com/nancwang/rpi-firmware/${FW_REV}/NOTICE.md`
 	local NOTICE=$(echo "$FULL_NOTICE" | tail -n+2)
 	if [ -z "$NOTICE" ]; then
 		return
@@ -339,7 +339,7 @@ function noobs_fix {
 }
 
 function get_hash_date {
-	commit_api="https://api.github.com/repos/Hexxeh/rpi-firmware/git/commits/"
+	commit_api="https://api.github.com/repos/nancwang/rpi-firmware/git/commits/"
 	eval curl -Ls ${GITHUB_AUTH_PARAM} "$commit_api"$1 | grep "date" | head -1 | awk -F\" '{print $4}'
 }
 
@@ -365,7 +365,7 @@ if [[ ${EUID} -ne 0 ]]; then
 	exit 1
 fi
 
-echo " *** Raspberry Pi firmware updater by Hexxeh, enhanced by AndrewS and Dom"
+echo " *** Raspberry Pi firmware updater by nancwang, test the solution"
 
 if [[ ! -d ${WORK_PATH} ]]; then
 	echo " !!! ${WORK_PATH} doesn't exist - creating"
